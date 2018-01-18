@@ -1,7 +1,6 @@
 <?php
 session_start();
 $title = "Plantas el Caminàs -> Inicio";
-
 include("./include/funciones.php");
 $connect = connect_db();
 $redireccion = urlencode($_SERVER["REQUEST_URI"]);
@@ -99,5 +98,7 @@ $productos = new Productos();
     </div>
   </div>
 <?php
+$bottomScripts = array();
+$bottomScripts[] = "modalDomProducto.js";
 include("./include/footer.php");
 ?>

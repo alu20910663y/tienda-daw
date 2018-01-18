@@ -21,6 +21,15 @@ class Carrito
     public function addItem($id, $cantidad){
         $_SESSION['carrito'][$id] = $cantidad;
     }
+    public function itemExists($id){
+        return isset($_SESSION['carrito'][$id]);
+    }
+    public function getItemCount($id){
+      if (!$this->itemExists($id))
+        return 0;
+      else
+        return $_SESSION['carrito'][$id];
+    }
     public function deleteItem($id){
       unset($_SESSION['carrito'][$id]);
     }
@@ -29,15 +38,22 @@ class Carrito
       self::__construct();
     }
     public function howMany(){
-      return count($_SESSION['carrito']);
+      return array_sum($_SESSION['carrito']);
     }
     public function setTotalPrecio($total){
       $totalPrecio = $total;
     }
-    public function getTotalPrecio(){
-      return $totalPrecio;
-    }
+    public function getTotal(){
+      $total = 0;
+      foreach($_SESSION['carrito'] as $key => $cantidad){
+        $producto = new Producto($key);
+        $subtotal = $producto->getPrecioReal() * $cantidad;
+        $subtotalTexto = number_format($subtotal , 2, '.', ' ') ;
+        $total += $subtotal;
 
+      }
+      return $total;
+    }
     public function toHtml(){
       if(isset($_GET["redirect"])){
         $urlReturn = urldecode($_GET["redirect"]);

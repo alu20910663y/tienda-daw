@@ -25,7 +25,7 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo SCRIPTSPATH; ?>bootstrap.min.js"></script>
 
-<script src="<?php echo SCRIPTSPATH; ?>scriptpersonal.js"></script>
+
 <script src="<?php echo SCRIPTSPATH; ?>modalIframeProducto.js"></script>
 <script src="<?php echo SCRIPTSPATH; ?>bootstrap.min.js"></script>
 <?php if (isset($bottomScripts)): ?>
